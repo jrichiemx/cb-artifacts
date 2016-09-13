@@ -3,7 +3,7 @@ import java.io.File
 import ArtifactsCB.PropertiesCB
 import com.fasterxml.jackson.databind.JsonNode
 import org.scalatest.{FlatSpec, Matchers}
-import play.api.libs.json.{JsObject, JsString, JsValue}
+import play.api.libs.json._
 
 import scala.io.BufferedSource
 
@@ -17,7 +17,35 @@ class ArtifactsCBSpec extends FlatSpec with Matchers{
   }
 
   it should "parse the json to parse to an object" in{
-    val jsonTest: JsValue = JsObject(Seq("host" -> JsString("localhost")))
-    ArtifactsCB.jsonToObject(jsonTest) equals PropertiesCB
+    ArtifactsCB.jsonToObject(json) equals PropertiesCB
   }
+
+  it should "create buckets" in {
+    ArtifactsCB.createBuckets() equals Boolean
+  }
+
+  val json: JsValue = Json.obj(
+    "host" -> "localhost",
+    "port" -> "8091",
+
+    "indexes" -> Json.arr(
+      Json.obj(
+        "name" -> "primaryIndex",
+        "index" ->  "select from table",
+        "role" -> JsNull
+      )
+    ),
+
+    "buckets" -> Json.arr(
+      Json.obj(
+        "name" -> "pricing",
+        "password" -> "pricing1",
+        "documents" -> Json.arr(
+          "",
+          ""
+      )
+    )
+
+    )
+  )
 }

@@ -16,16 +16,21 @@ class ArtifactsCB()
 
 
 object ArtifactsCB {
-  def jsonToObject(json: JsValue): Option[PropertiesCB] = {
+  def createBuckets(propertiesCB: PropertiesCB) = {
+
+
+  }
+
+  def jsonToObject(json: JsValue): PropertiesCB = {
 
     json.validate[PropertiesCB] match {
 
       case ok: JsSuccess[PropertiesCB] => ok.get
 
-      case e:  JsError => {
+      case e:  JsError => e.get //{
        // println("Errors: " + JsError.toJson(e).toString())
-        None
-      }
+       // None
+      //}
 
     }
 
