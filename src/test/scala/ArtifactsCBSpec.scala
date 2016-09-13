@@ -1,6 +1,6 @@
 import java.io.File
 
-import ArtifactsCB.PropertiesCB
+import ArtifactsCB.{BucketCB, IndexCB, PropertiesCB}
 import com.fasterxml.jackson.databind.JsonNode
 import org.scalatest.{FlatSpec, Matchers}
 import play.api.libs.json._
@@ -21,8 +21,19 @@ class ArtifactsCBSpec extends FlatSpec with Matchers{
   }
 
   it should "create buckets" in {
-    ArtifactsCB.createBuckets() equals Boolean
+    ArtifactsCB.createBuckets(bucketProperties) equals Boolean
   }
+/*case class PropertiesCB(host: String = "localhost", port: String = "8091", indexes: Seq[IndexCB], buckets: Seq[BucketCB] )
+
+  case class IndexCB(name: String, index: String)
+
+  case class BucketCB(name: String, password: String, documents: Seq[String])
+*/
+  val bucketProperties: PropertiesCB = PropertiesCB("localhost", "8091", Seq(indexesCB), Seq(bucketsCB) )
+
+  val indexesCB: IndexCB = IndexCB("pricing", "Select * from ")
+
+  val bucketsCB: BucketCB = BucketCB("ERS-Pricing", "pricing1", Array("",""))
 
   val json: JsValue = Json.obj(
     "host" -> "localhost",

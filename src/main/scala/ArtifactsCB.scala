@@ -19,6 +19,7 @@ object ArtifactsCB {
   def createBuckets(propertiesCB: PropertiesCB) = {
 
 
+
   }
 
   def jsonToObject(json: JsValue): PropertiesCB = {
@@ -27,10 +28,7 @@ object ArtifactsCB {
 
       case ok: JsSuccess[PropertiesCB] => ok.get
 
-      case e:  JsError => e.get //{
-       // println("Errors: " + JsError.toJson(e).toString())
-       // None
-      //}
+      case e:  JsError => e.get /
 
     }
 
