@@ -16,4 +16,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 libraryDependencies += "com.typesafe.play" % "play-json_2.11" % "2.5.6"
 
+libraryDependencies += "com.couchbase.client" % "java-client" % "2.3.1"
+
+libraryDependencies += "com.marriott" % "pricing-documents" % "2.3.1"
 

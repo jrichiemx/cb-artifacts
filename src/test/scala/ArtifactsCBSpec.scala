@@ -23,13 +23,9 @@ class ArtifactsCBSpec extends FlatSpec with Matchers{
   it should "create buckets" in {
     ArtifactsCB.createBuckets(bucketProperties) equals Boolean
   }
-/*case class PropertiesCB(host: String = "localhost", port: String = "8091", indexes: Seq[IndexCB], buckets: Seq[BucketCB] )
 
-  case class IndexCB(name: String, index: String)
 
-  case class BucketCB(name: String, password: String, documents: Seq[String])
-*/
-  val bucketProperties: PropertiesCB = PropertiesCB("localhost", "8091", Seq(indexesCB), Seq(bucketsCB) )
+  val bucketProperties: PropertiesCB = PropertiesCB("localhost", "8091", "Administrator", "couchbase", Seq(indexesCB), Seq(bucketsCB) )
 
   val indexesCB: IndexCB = IndexCB("pricing", "Select * from ")
 
@@ -38,6 +34,8 @@ class ArtifactsCBSpec extends FlatSpec with Matchers{
   val json: JsValue = Json.obj(
     "host" -> "localhost",
     "port" -> "8091",
+    "user" -> "Administrator",
+    "password" -> "couchbase",
 
     "indexes" -> Json.arr(
       Json.obj(
